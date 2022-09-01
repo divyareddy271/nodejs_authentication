@@ -14,5 +14,5 @@ module.exports.register = function(req,res){
 
 }
 module.exports.home = function(req,res){
-    return res.send("<h2>Successfully logged in</h2>");
+    return res.render("home");
 }

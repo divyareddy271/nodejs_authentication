@@ -8,6 +8,8 @@ routes.post("/sign-up/register",signup_controller.register)
 routes.get("/sign-in",signin_controller.signin);
 routes.post("/sign-in/create-session",signin_controller.createsession);
 routes.get("/",signup_controller.home);
+// routes.get("/reset",signin_controller.reset);
+// routes.get("/signout",signin_controller.logout);
 
 
 
