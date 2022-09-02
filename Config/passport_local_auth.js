@@ -1,5 +1,5 @@
 const passport = require("passport");
-const local_auth = require("passport-local").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 const User = require("../models/user_schema")
 const bcrypt = require("bcryptjs")
 
@@ -13,9 +13,9 @@ passport.use(new LocalStrategy({
             return done(err);
         }
         if(user){
-            var passwordmatch = await bcrypt.compare(password,user.passport)
+            var passwordmatch = await bcrypt.compare(password,user.password)
             if(passwordmatch){
-                return done(null,true);
+                return done(null,user);
             }
         }
         else{
@@ -40,5 +40,11 @@ passport.deserializeUser(function(id,done){
             return done(null,false);
         })
 })
+passport.checkauthentication = function(req,res,next){
+    if(req.isAuthenticated()){
+        next();
+    }
+    return res.redirect("/sign-in")
+}
 
 module.exports = passport;
