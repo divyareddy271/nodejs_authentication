@@ -4,22 +4,14 @@ module.exports.signin = function(req,res){
     return res.render("signin")
 }
 module.exports.createsession = async function(req,res){
-    try{
-        let user = await User.findOne({email : req.body.email});
-        if(user){
-            let passwordmatch = await bycrypt.compare(req.body.password,user.password);
-            if(passwordmatch){
-                console.log("successfully logged in match");
-                return res.redirect("/");
-            }
-            else{
-                console.log("incorect password");
-                return res.redirect("back");
-             }
-        } 
-    }
-    catch(err){
-        console.log("error in finding user");
-        return res.redirect("back");
-    }
+    return res.redirect("/");
+}
+module.exports.logout = function(req,res){
+    req.session.destroy();//to destroy session
+    req.logout(function(err){
+        if(err){
+            return;
+        }})//to remove req.user
+       // req.flash("success","Logged out successfully");
+    return res.redirect("/");
 }

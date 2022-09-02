@@ -44,7 +44,9 @@ passport.checkauthentication = function(req,res,next){
     if(req.isAuthenticated()){
         next();
     }
-    return res.redirect("/sign-in")
+    else{
+        return res.redirect("/sign-in")
+    }
 }
 
 module.exports = passport;

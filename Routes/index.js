@@ -10,9 +10,9 @@ routes.get("/sign-in",signin_controller.signin);
 routes.post("/sign-in/create-session",passport.authenticate('local', {
     successRedirect: "/",
     failureRedirect: "/login"}),signin_controller.createsession);
-routes.get("/",passport.checkauthentication ,signup_controller.home);
+routes.get("/",passport.checkauthentication,signup_controller.home);
 // routes.get("/reset",signin_controller.reset);
-// routes.get("/signout",signin_controller.logout);
+routes.get("/signout",signin_controller.logout);
 
 
 

@@ -4,6 +4,7 @@ const db=require("./config/mongoose")
 const passport = require("passport")
 const passport_local_authentication = require("./config/passport_local_auth")
 const app = express();
+const Mongo_Store = require("connect-mongo");
 const port = 9000;
 //an HTTP server-side framework used to create and manage a session middleware. 
 const sessions = require("express-session");
@@ -18,7 +19,15 @@ app.use(sessions({
     saveUninitialized:true,
     //this sets the cookie expiry time. The browser will delete the cookie after the set duration elapses. The cookie will not be attached to any of the requests in the future.
     cookie: { maxAge: oneDay },
-    resave: false 
+    resave: false,
+    //without mongo store  session data would erase with server restart
+    store : Mongo_Store.create({
+        mongoUrl : "mongodb://0.0.0.0:27017/authentication",
+            autoremove : "disabled",
+        },function(err){
+            console.log("error at mongo store",err || "connection established to store cookie");
+        }
+    )
 }));
 app.set("view engine","ejs");
 // app.set("views",path.join(__dirname,"views"));
