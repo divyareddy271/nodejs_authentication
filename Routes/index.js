@@ -12,7 +12,7 @@ routes.post("/sign-in/create-session",passport.authenticate('local', {
     failureRedirect: "/login"}),signin_controller.createsession);
 routes.get("/",passport.checkauthentication,signup_controller.home);
 // routes.get("/reset",signin_controller.reset);
-routes.get("/signout",signin_controller.logout);
+routes.get("/signout",passport.checkauthentication,signin_controller.logout);
 
 
 
