@@ -10,6 +10,7 @@ app.set("views","./views");
 // middleware
 app.use(express.json());
 app.use(express.urlencoded());
+//to use password cookie or session we need express-session and cookie-parser
 
 app.use("/", require("./Routes/index"));
 app.listen(port,function(err){
