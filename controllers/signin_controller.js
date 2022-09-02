@@ -15,3 +15,18 @@ module.exports.logout = function(req,res){
        // req.flash("success","Logged out successfully");
     return res.redirect("/");
 }
+module.exports.update = async function(req,res){
+    var id;
+    if(req.user){
+         id=req.user.id;
+         let user = await User.findById(id);
+         user.password = req.body.password;
+         user.save();
+    }
+  
+    return res.redirect("/");
+}
+
+module.exports.reset = function(req,res){
+    return res.render("reset");
+}

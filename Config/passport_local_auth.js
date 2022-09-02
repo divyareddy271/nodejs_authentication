@@ -17,6 +17,9 @@ passport.use(new LocalStrategy({
             if(passwordmatch){
                 return done(null,user);
             }
+            else{
+                return done(null,false);
+            }
         }
         else{
             return done(null,false);
