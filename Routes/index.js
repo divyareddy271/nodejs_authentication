@@ -9,12 +9,15 @@ routes.post("/sign-up/register",signup_controller.register)
 routes.get("/sign-in",signin_controller.signin);
 routes.post("/sign-in/create-session",passport.authenticate(
     "local",
-    {failureRedirect : "/sign-un"},),signin_controller.createsession);
+    {failureRedirect : "/sign-in"},),signin_controller.createsession);
 routes.get("/",passport.checkauthentication,signup_controller.home);
 routes.get("/reset",signin_controller.reset);
 routes.get("/signout",passport.checkauthentication,signin_controller.logout);
 routes.post("/reset/updation",signin_controller.update);
 
+//google routes
+routes.get("/auth/google",passport.authenticate("google",{scope : ['profile','email']}))
+routes.get("/auth/google/callback",passport.authenticate("google",{failureRedirect : "/users/sign-in" }),signup_controller.home)
 
 
 module.exports = routes;

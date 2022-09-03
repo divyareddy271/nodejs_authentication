@@ -1,7 +1,9 @@
 
 const express=require("express");
 const db=require("./config/mongoose")
+const environment = require("./Config/environment")
 const passport = require("passport")
+const passport_google_auth = require("./Config/passport_google")
 const passport_local_authentication = require("./config/passport_local_auth")
 const app = express();
 const Mongo_Store = require("connect-mongo");
@@ -15,7 +17,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 //to use password cookie or session we need express-session and cookie-parser
 app.use(sessions({
     //a random unique string key used to authenticate a session. It is stored in an environmen variable and can’t be exposed to the public.The key is usually long and randomly generated in a production environment.
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    secret: environment.session_secret,
     saveUninitialized:true,
     //this sets the cookie expiry time. The browser will delete the cookie after the set duration elapses. The cookie will not be attached to any of the requests in the future.
     cookie: { maxAge: oneDay },
