@@ -6,6 +6,9 @@ const passport = require("passport")
 const passport_google_auth = require("./Config/passport_google")
 const passport_local_authentication = require("./config/passport_local_auth")
 const app = express();
+const expressLayouts = require("express-ejs-layouts");
+//SASS and SCSS
+const scssMiddleware = require("node-sass-middleware");
 const Mongo_Store = require("connect-mongo");
 const port = 9000;
 //an HTTP server-side framework used to create and manage a session middleware. 
@@ -35,11 +38,24 @@ app.set("view engine","ejs");
 // app.set("views",path.join(__dirname,"views"));
 app.set("views","./views");
 
+// app.use("/uploads",express.static(__dirname+"/uploads"))
 // parsing the incoming data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // cookie parser middleware the server can access the necessary option to save, read and access a cookie.
 app.use(cookieParser());
+if(environment.name == "development" ){
+    app.use(scssMiddleware ({
+        src : path.join(__dirname,environment.assetpath,"scss"),
+        dest : path.join(__dirname,environment.assetpath,"css"),
+        debug : false,
+        prefix :"/css",
+        outputStyle : "expanded",
+    }
+    ))
+   console.log( path.join(__dirname,environment.assetpath,"scss"),"and ",path.join(__dirname,environment.assetpath,"css"))
+}
+app.use(express.static(environment.assetpath));
 
 app.use(passport.initialize()) 
 // init passport on every route call.

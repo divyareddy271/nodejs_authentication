@@ -1,0 +1,19 @@
+<body>
+    <div>
+        <div>
+            <h1> Yo! Forgot your password?</h1>
+            <span>No worries! Enter your email and we will send you a reset</span>
+
+        </div>
+        </div>
+        <div>
+            <form method="post" action="/sign-in/forgot/reset">
+                <input name="email" placeholder="Email">
+                <button>
+                    Send Request
+                </button>
+                <span id="status"><%=details %></span>
+            </form>
+        </div>
+    </div>
+</body>

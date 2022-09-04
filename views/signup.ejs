@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/signup.css">
     </head>
     <body>
-        <div>
-            <form action="/sign-up/register" method="post">
-                <input type="text" placeholder="Please enter your email" id="email" name="email">
-                <input type="text" placeholder="Please enter your name" id="name" name="name">
-                <input type="password" placeholder="Please enter your password" id="password" name="password">
-                <input type="password" placeholder="COnfirm password" id="c_password" name="c_password">
-                <button type="submit">Sign up</button>
-                
-            </form>
+        <div class="container">
+            <div class="div-image">
+                <h1>
+                    Welcome Back !
+                </h1>
+                <span>
+                    To keep connected with us please login with your personal info
+                </span>
+                <a href="/sign-in">
+                    SIGN IN
+                </a>
+            </div>
+            <div class="div-form">
+                <div class="details">
+                    <div><h1>Create Account</h1></div>
+                    <div class="social-icon">
+                        <a href="/auth/google">
+                            <i class="fa fa-google" style="font-size:18px"></i>
+                        </a>
+                    </div>
+                    <span>or use your email for registeration</span>
+                </div>
+                <div>
+                    <form action="/sign-up/register" method="post">
+                        <input autocomplete="on" type="text" placeholder="Email" id="email" name="email">
+                        <input autocomplete="off" type="text" placeholder="Name" id="name" name="name">
+                        <input autocomplete="off" type="password" placeholder="Password" id="password" name="password">
+                        <input autocomplete="off" type="password" placeholder="Confirm password" id="c_password" name="c_password">
+                        <button type="submit">Sign up</button>
+                        
+                    </form>
+                </div>
+                <div>
+                   
+                </div>
+
+            </div>
         </div>
-        <div>
-            <a href="/auth/google">Signup/signin via google</a>
-        </div>
+        
     </body>
 </html>
